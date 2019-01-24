@@ -48,6 +48,7 @@ def add():
 				except KeyError:
 					new_sentence = 'нету_одного_из_слов_в_словаре'
 					accuracy += 0.0001
+					break
 		out_text = ' '.join(new_sentence)
 		out_accuracy = accuracy/len(lines)
 		messages.append(Message(out_text, out_accuracy))
