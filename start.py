@@ -1,11 +1,12 @@
 from collections import namedtuple
 import gensim
 from flask import Flask, render_template, redirect, url_for, request
+from redis import Redis
 
 from word2vec_conf import NOT_CHANGE_WORD
 
 app = Flask(__name__)
-
+redis = Redis(host='redis', port=6379)
 
 Message = namedtuple('Message', 'text tag')
 messages = []
@@ -56,3 +57,6 @@ def add():
 		i += 1
 	messages.insert(0, Message(text, 1))	
 	return redirect(url_for('hello_world'))
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", debug=True)
